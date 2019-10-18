@@ -12,5 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.master');
 });
+Route::group(['prefix'=>'admin', 'as'=>'admin.','namespace'=>'Admin','middleware'=>['auth','admin']],function(){
+   Route::get('dashboard','dashboardController@index')->name('dashboard'); 
+});
+Route::group(['prefix'=>'user', 'as'=>'user.','namespace'=>'User','middleware'=>['auth','user']],function(){
+    Route::get('dashboard','dashboardController@index')->name('dashboard'); 
+});
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
