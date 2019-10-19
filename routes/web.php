@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('frontend.master');
+    return view('frontend.page.home');
 });
 Route::group(['prefix'=>'admin', 'as'=>'admin.','namespace'=>'Admin','middleware'=>['auth','admin']],function(){
    Route::get('dashboard','dashboardController@index')->name('dashboard'); 
